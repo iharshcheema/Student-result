@@ -70,6 +70,20 @@ app.post('/result', async (req, res) => {
     const round3 = parseFloat(Round3marks) || 0
     const techMarks = parseFloat(TechnicalRoundMarks) || 0
 
+    // Check constraints
+    if (
+      round1 < 0 ||
+      round1 > 10 ||
+      round2 < 0 ||
+      round2 > 10 ||
+      round3 < 0 ||
+      round3 > 10 ||
+      techMarks < 0 ||
+      techMarks > 20
+    ) {
+      return res.status(400).json({ error: 'Marks are out of valid range' })
+    }
+
     // Calculate the total marks
     const totalMarks = round1 + round2 + round3 + techMarks
 

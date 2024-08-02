@@ -32,12 +32,11 @@ const AddStudent = ({ fetchStudents }) => {
         }),
       })
 
-      if (!response.ok) {
-        throw new Error('Failed to add student')
-      }
-
       const data = await response.json()
       console.log(data.message) // Or update the UI to show success
+      if (!response.ok) {
+        alert('Add Student details within the constraints')
+      }
       fetchStudents() // Fetch updated student list
     } catch (err) {
       setError(err.message)
